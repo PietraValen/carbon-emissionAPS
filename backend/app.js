@@ -18,3 +18,17 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+require("dotenv").config();
+const mongoose = require("mongoose");
+
+const uri = process.env.MONGODB_URI; // Defina a URI no arquivo .env
+
+mongoose
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("Conectado ao MongoDB!");
+  })
+  .catch((err) => {
+    console.error("Erro ao conectar ao MongoDB:", err);
+  });
